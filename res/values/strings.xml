@@ -2,12 +2,14 @@
 <resources>
 
     <string name="app_name">ZestProject</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_second">SecondActivity</string>
     <string name="frag_1">Test1</string>
     <string name="frag_2">Test2</string>
     <string name="frag_3">Test3</string>
     <string name="frag_4">Test4</string>
     <string name="frag_5">Test5</string>
+    <string name="frag_6">Test6</string>
+    <string name="frag_7">Test7</string>
     
     <string name="hello_world">Hello world!</string>
 

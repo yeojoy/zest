@@ -1,17 +1,12 @@
 package me.yeojoy.zestproject.fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Locale;
 
 import me.yeojoy.zestproject.R;
-import android.app.Fragment;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +72,46 @@ public class Test5Fragment extends Fragment implements OnClickListener, OnLongCl
     }
     
     private void setText() {
-        mTvResult.setText("a\na\na\na\n");
+        Date date = new Date();
+        SimpleDateFormat f = null;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Locale.KOREA\n");
+        f = new SimpleDateFormat("E", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEEEE", Locale.KOREA);
+        sb.append(f.format(date)).append("\n");
+        sb.append("\n\nLocale.KOREAN\n");
+        f = new SimpleDateFormat("E", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        f = new SimpleDateFormat("EEEEEEEE", Locale.KOREAN);
+        sb.append(f.format(date)).append("\n");
+        
+        mTvResult.setText(sb);
+        
         mTvTime.setText(String.valueOf(mTvResult.getLineCount()));
     }
     

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="fragment_ids">
+        <item name="frag_01">0</item>
+        <item name="frag_02">1</item>
+        <item name="frag_03">2</item>
+        <item name="frag_04">3</item>
+        <item name="frag_05">4</item>
+        <item name="frag_06">5</item>
+        <item name="frag_07">6</item>
+    </integer-array>
+</resources>

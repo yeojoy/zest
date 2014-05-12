@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_second"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_second"/>
 
     <item
         android:id="@+id/frag_1"
@@ -35,5 +35,17 @@
         android:orderInCategory="100"
         android:showAsAction="collapseActionView"
         android:title="@string/frag_5"/>
+
+    <item
+        android:id="@+id/frag_6"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/frag_6"/>
+
+    <item
+        android:id="@+id/frag_7"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/frag_7"/>
 
 </menu>

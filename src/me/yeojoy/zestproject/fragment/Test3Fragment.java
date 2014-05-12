@@ -5,11 +5,11 @@ import java.util.Date;
 
 import me.yeojoy.zestproject.R;
 import my.lib.time.TimeAgo;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;

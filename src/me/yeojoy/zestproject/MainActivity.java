@@ -5,37 +5,47 @@ import me.yeojoy.zestproject.fragment.Test2Fragment;
 import me.yeojoy.zestproject.fragment.Test3Fragment;
 import me.yeojoy.zestproject.fragment.Test4Fragment;
 import me.yeojoy.zestproject.fragment.Test5Fragment;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import me.yeojoy.zestproject.fragment.Test6Fragment;
+import me.yeojoy.zestproject.fragment.Test7Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     
-    public static final int TEST_1_FRAGMENT = 10001;
-    public static final int TEST_2_FRAGMENT = 10002;
-    public static final int TEST_3_FRAGMENT = 10003;
-    public static final int TEST_4_FRAGMENT = 10004;
-    public static final int TEST_5_FRAGMENT = 10005;
-    
     private FragmentManager mFragmentManager;
     
+    private ViewPager mFragmentPager;
+    
     private int mCurrentFragmentIndex;
+    
+    private int[] mFragmentIds;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
         setContentView(R.layout.activity_main);
-        mFragmentManager = getFragmentManager();
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentIds = getResources().getIntArray(R.array.fragment_ids);
         
-        showNewFragment(TEST_5_FRAGMENT);
+//        showNewFragment(mFragmentIds[mFragmentIds.length - 1]);
+        
+        FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(mFragmentManager);
+        mFragmentPager = (ViewPager) findViewById(R.id.vp_pager);
+        mFragmentPager.setAdapter(fragmentPagerAdapter);
+        
+        mFragmentPager.setCurrentItem(mFragmentIds[mFragmentIds.length - 1]);
+        
     }
 
     @Override
@@ -49,26 +59,39 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         
         switch (item.getItemId()) {
+            case R.id.action_second:
+                Intent intent = new Intent(this, SecondActivity.class);
+                startActivity(intent);
+                break;
+                
             case R.id.frag_1:
-                showAnotherFragment(TEST_1_FRAGMENT);
+                showAnotherFragment(mFragmentIds[0]);
                 break;
                 
             case R.id.frag_2:
-                showAnotherFragment(TEST_2_FRAGMENT);
+                showAnotherFragment(mFragmentIds[1]);
                 
                 break;
                 
             case R.id.frag_3:
-                showAnotherFragment(TEST_3_FRAGMENT);
+                showAnotherFragment(mFragmentIds[2]);
                 
                 break;
                 
             case R.id.frag_4:
-                showAnotherFragment(TEST_4_FRAGMENT);
+                showAnotherFragment(mFragmentIds[3]);
                 
                 break;
             case R.id.frag_5:
-                showAnotherFragment(TEST_5_FRAGMENT);
+                showAnotherFragment(mFragmentIds[4]);
+                
+                break;
+            case R.id.frag_6:
+                showAnotherFragment(mFragmentIds[5]);
+                
+                break;
+            case R.id.frag_7:
+                showAnotherFragment(mFragmentIds[6]);
                 
                 break;
         }
@@ -84,24 +107,32 @@ public class MainActivity extends Activity {
         
         switch (index) {
             
-            case TEST_1_FRAGMENT:
+            case 0:
                 frag = new Test1Fragment();
                 break;
                 
-            case TEST_2_FRAGMENT:
+            case 1:
                 frag = new Test2Fragment();
                 break;
                 
-            case TEST_3_FRAGMENT:
+            case 2:
                 frag = new Test3Fragment();
                 break;
                 
-            case TEST_4_FRAGMENT:
+            case 3:
                 frag = new Test4Fragment();
                 break;
                 
-            case TEST_5_FRAGMENT:
+            case 4:
                 frag = new Test5Fragment();
+                break;
+                
+            case 5:
+                frag = new Test6Fragment();
+                break;
+                
+            case 6:
+                frag = new Test7Fragment();
                 break;
                 
                 
@@ -118,25 +149,73 @@ public class MainActivity extends Activity {
         Log.d(TAG, "showNewFragment()");
         if (index != mCurrentFragmentIndex)
             mFragmentManager.beginTransaction()
-                    .add(R.id.rl_container, getFragment(index)).commit();
+                    .add(R.id.vp_pager, getFragment(index)).commit();
     } 
     
     private void showAnotherFragment(int index) {
         Log.d(TAG, "showAnotherFragment()");
         if (index != mCurrentFragmentIndex)
             mFragmentManager.beginTransaction()
-                    .replace(R.id.rl_container, getFragment(index)).commit();
+                    .replace(R.id.vp_pager, getFragment(index)).commit();
     }
     
-    private void showAnotherFragmentAndAddToBackStack(int index) {
-        Log.d(TAG, "showAnotherFragmentAndAddToBackStack()");
-        
-        if (index != mCurrentFragmentIndex) {
-            FragmentTransaction transaction = mFragmentManager.beginTransaction();
-            transaction.replace(R.id.rl_container, getFragment(index));
-            transaction.addToBackStack(null);
-            transaction.commit();
+//    private void showAnotherFragmentAndAddToBackStack(int index) {
+//        Log.d(TAG, "showAnotherFragmentAndAddToBackStack()");
+//        
+//        if (index != mCurrentFragmentIndex) {
+//            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+//            transaction.replace(R.id.vp_pager, getFragment(index));
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+//        }
+//    }
+    
+ // Since this is an object collection, use a FragmentStatePagerAdapter,
+ // and NOT a FragmentPagerAdapter.
+    public class FragmentPagerAdapter extends FragmentStatePagerAdapter {
+        public FragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+    
+        @Override
+        public Fragment getItem(int i) {
+            Fragment fragment = getFragment(i);
+            return fragment;
+        }
+    
+        @Override
+        public int getCount() {
+            return mFragmentIds.length;
+        }
+           
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String title = null;
+            switch (position) {
+                case 0:
+                    title = getResources().getString(R.string.frag_1);
+                    break;
+                case 1:
+                    title = getResources().getString(R.string.frag_2);
+                    break;
+                case 2:
+                    title = getResources().getString(R.string.frag_3);
+                    break;
+                case 3:
+                    title = getResources().getString(R.string.frag_4);
+                    break;
+                case 4:
+                    title = getResources().getString(R.string.frag_5);
+                    break;
+                case 5:
+                    title = getResources().getString(R.string.frag_6);
+                    break;
+                case 6:
+                    title = getResources().getString(R.string.frag_7);
+                    break;
+                 
+            }
+            return title;
         }
     }
-    
 }

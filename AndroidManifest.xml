@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         
+        <activity android:name=".SecondActivity" />
         <activity android:name=".WidgetConfigure" />
         
         <receiver android:name=".appwidget.ZestAppWidgetProvider">

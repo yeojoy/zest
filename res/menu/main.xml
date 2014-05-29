@@ -48,4 +48,10 @@
         android:showAsAction="collapseActionView"
         android:title="@string/frag_7"/>
 
+    <item
+        android:id="@+id/frag_8"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/frag_8"/>
+
 </menu>

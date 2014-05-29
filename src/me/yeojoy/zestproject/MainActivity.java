@@ -7,6 +7,7 @@ import me.yeojoy.zestproject.fragment.Test4Fragment;
 import me.yeojoy.zestproject.fragment.Test5Fragment;
 import me.yeojoy.zestproject.fragment.Test6Fragment;
 import me.yeojoy.zestproject.fragment.Test7Fragment;
+import me.yeojoy.zestproject.fragment.Test8Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -94,6 +95,10 @@ public class MainActivity extends FragmentActivity {
                 showAnotherFragment(mFragmentIds[6]);
                 
                 break;
+            case R.id.frag_8:
+                showAnotherFragment(mFragmentIds[7]);
+                
+                break;
         }
         
         return super.onOptionsItemSelected(item);
@@ -133,6 +138,10 @@ public class MainActivity extends FragmentActivity {
                 
             case 6:
                 frag = new Test7Fragment();
+                break;
+                
+            case 7:
+                frag = new Test8Fragment();
                 break;
                 
                 
@@ -212,6 +221,9 @@ public class MainActivity extends FragmentActivity {
                     break;
                 case 6:
                     title = getResources().getString(R.string.frag_7);
+                    break;
+                case 7:
+                    title = getResources().getString(R.string.frag_8);
                     break;
                  
             }
